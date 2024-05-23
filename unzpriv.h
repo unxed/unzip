@@ -2185,6 +2185,16 @@ typedef struct VMStimbuf {
        int have_ecr64;                  /* valid Zip64 ecdir-record exists */
        int is_zip64_archive;            /* Zip64 ecdir-record is mandatory */
        ush zipfile_comment_length;
+       zusz_t ec_start, ec_end;         /* offsets of start and end of the
+                                           end of central directory record,
+                                           including if present the Zip64
+                                           end of central directory locator,
+                                           which immediately precedes the
+                                           end of central directory record */
+       zusz_t ec64_start, ec64_end;     /* if have_ecr64 is true, then these
+                                           are the offsets of the start and
+                                           end of the Zip64 end of central
+                                           directory record */
    } ecdir_rec;
 
 
@@ -3008,7 +3018,7 @@ char    *GetLoadPath     OF((__GPRO));                              /* local */
          !(((islochdr) || (isuxatt)) && \
            ((hostver) == 25 || (hostver) == 26 || (hostver) == 40))) || \
         (hostnum) == FS_HPFS_ || \
-        ((hostnum) == FS_NTFS_ && (hostver) == 50)) { \
+        ((hostnum) == FS_NTFS_ /* && (hostver) == 50 */ )) { \
         _OEM_INTERN((string)); \
     } else { \
         _ISO_INTERN((string)); \
