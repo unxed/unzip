@@ -1,0 +1,7 @@
+*.o
+*.zip
+funzip
+unzip
+unzipsfx
+flags
+unix/flags
