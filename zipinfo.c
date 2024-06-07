@@ -459,7 +459,7 @@ int zi_opts(__G__ pargc, pargv)
 
 #ifdef UNIX
     extern char OEM_CP[MAX_CP_NAME];
-    extern int forcedCP;
+    extern char ISO_CP[MAX_CP_NAME];
 #endif
 
 #ifdef MACOS
@@ -519,8 +519,7 @@ int zi_opts(__G__ pargc, pargv)
         		                  "error:  a valid character encoding should follow the -I argument"));
     	                        return(PK_PARAM);
     						}
-                            strncpy(OEM_CP, s, sizeof(OEM_CP));
-                            forcedCP = 1;
+    						strncpy(ISO_CP, s, sizeof(ISO_CP));
     					} else { /* -I charset */
     						++argv;
     						if(!(--argc > 0 && *argv != NULL && **argv != '-')) {
@@ -529,8 +528,7 @@ int zi_opts(__G__ pargc, pargv)
     	                        return(PK_PARAM);
     						}
     						s = *argv;
-                            strncpy(OEM_CP, s, sizeof(OEM_CP));
-                            forcedCP = 1;
+    						strncpy(ISO_CP, s, sizeof(ISO_CP));
     					}
     					while(*(++s)); /* No params straight after charset name */
     				}
@@ -570,8 +568,7 @@ int zi_opts(__G__ pargc, pargv)
         		                  "error:  a valid character encoding should follow the -I argument"));
     	                        return(PK_PARAM);
     						}
-                            strncpy(OEM_CP, s, sizeof(OEM_CP));
-                            forcedCP = 1;
+    						strncpy(OEM_CP, s, sizeof(OEM_CP));
     					} else { /* -O charset */
     						++argv;
     						if(!(--argc > 0 && *argv != NULL && **argv != '-')) {
@@ -580,8 +577,7 @@ int zi_opts(__G__ pargc, pargv)
     	                        return(PK_PARAM);
     						}
     						s = *argv;
-                            strncpy(OEM_CP, s, sizeof(OEM_CP));
-                            forcedCP = 1;
+    						strncpy(OEM_CP, s, sizeof(OEM_CP));
     					}
     					while(*(++s)); /* No params straight after charset name */
     				}

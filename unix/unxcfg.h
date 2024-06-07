@@ -174,8 +174,8 @@ typedef struct stat z_stat;
 #endif
 #ifndef NO_SETLOCALE
 # if (!defined(NO_WORKING_ISPRINT) && !defined(HAVE_WORKING_ISPRINT))
-   /* disable "enhanced" unprintable chars detection in fnfilter() */
-#  define NO_WORKING_ISPRINT
+   /* enable "enhanced" unprintable chars detection in fnfilter() */
+#  define HAVE_WORKING_ISPRINT
 # endif
 #endif
 
@@ -250,14 +250,8 @@ typedef struct stat z_stat;
 #endif
 #define _OEM_INTERN(str1) oem_intern(str1)
 
-#ifdef _ANSI_INTERN
-#  undef _ANSI_INTERN
-#endif
-#define _ANSI_INTERN(str1) ansi_intern(str1)
-
 void iso_intern(char *);
 void oem_intern(char *);
-void ansi_intern(char *);
 void init_conversion_charsets(void);
 
 #endif /* !__unxcfg_h */
